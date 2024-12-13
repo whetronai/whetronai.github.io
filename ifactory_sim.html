@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【輝創電子 - 智慧製造計畫B1分項】
+                [VOC監測預警與自適應調控系統] 運作模擬器</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #chartFrame, #tableFrame { margin-top: 20px; border: 1px solid #ddd; padding: 10px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        .controls { margin-bottom: 20px; }
+        .yellow-warning { color: orange; }
+        .red-alert { color: red; }
+        #warningMessage { position: fixed; top: 10px; right: 10px; background-color: rgba(255, 255, 255, 0.9); padding: 10px; border: 1px solid #ddd; z-index: 1000; display: none; }
+        .triangle-warning { width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 15px solid orange; display: inline-block; vertical-align: middle; margin-right: 5px; }
+        .dynamic-light { width: 15px; height: 15px; background-color: red; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 5px; animation: blink 1s infinite; }
+        .red-triangle { width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 15px solid red; display: inline-block; vertical-align: middle; margin-right: 5px; }
+        @keyframes blink {
+            0% { opacity: 0.2; }
+            50% { opacity: 1; }
+            100% { opacity: 0.2; }
+        }
+        #createdBy { position: fixed; top: 10px; right: 10px; background-color: rgba(255, 255, 255, 0.9); padding: 10px; border: 1px solid #ddd; z-index: 1001; }
+        #chartFrame canvas { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    <h1>【輝創電子 - 智慧製造計畫B1分項】<br>[VOC監測預警與自適應調控系統] 運作模擬器 (Created By Leon)</h1>
+    <div class="controls">
+        <input type="range" id="slider" min="0" max="5" step="0.01" value="1.5">
+        <button id="resetToStandardButton">回復標準值</button>
+        <button id="startButton">Start</button>
+        <button id="resetButton">Reset</button>
+        <button id="stopButton">Stop</button>
+        <p>當前值: <span id="value">1.50 mg/m³</span></p>
+        <label for="yellowWarning">黃色警告線: </label>
+        <input type="number" id="yellowWarning" min="0" max="5" step="0.01" value="2.5">
+        <label for="redAlert">紅色警報線: </label>
+        <input type="number" id="redAlert" min="0" max="5" step="0.01" value="3.5">
+    </div>
+    <div id="chartFrame">
+        <canvas id="chart"></canvas>
+    </div>
+    <div id="tableFrame">
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>時間</th>
+                    <th>值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <div id="warningMessage"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+    <script>
+        const ctx = document.getElementById('chart').getContext('2d');
+        const chartData = {
+            labels: [],
+            datasets: [{
+                label: 'VOC(甲苯)含量值',
+                data: [],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false
+            }]
+        };
+
+        let yellowWarningValue = 2.5;
+        let redAlertValue = 3.5;
+        let timeoutId;
+
+        const chartOptions = {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: '時間'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: '값 (mg/m³)'
+                    },
+                    beginAtZero: true,
+                    max: 5,
+                    ticks: {
+                        callback: function(value) {
+                            return value + ' mg/m³';
+                        }
+                    }
+                }
+            },
+            plugins: {
+                annotation: {
+                    annotations: [
+                        {
+                            type: 'line',
+                            yMin: yellowWarningValue,
+                            yMax: yellowWarningValue,
+                            borderColor: 'orange',
+                            borderWidth: 2,
+                            label: {
+                                enabled: true,
+                                content: '警告線',
+                                position: 'end'
+                            }
+                        },
+                        {
+                            type: 'line',
+                            yMin: redAlertValue,
+                            yMax: redAlertValue,
+                            borderColor: 'red',
+                            borderWidth: 2,
+                            label: {
+                                enabled: true,
+                                content: '警報線',
+                                position: 'end'
+                            }
+                        }
+                    ]
+                }
+            }
+        };
+
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: chartOptions
+        });
+
+        const slider = document.getElementById('slider');
+        const valueDisplay = document.getElementById('value');
+        const tableBody = document.getElementById('table').getElementsByTagName('tbody')[0];
+        const resetToStandardButton = document.getElementById('resetToStandardButton');
+        const startButton = document.getElementById('startButton');
+        const resetButton = document.getElementById('resetButton');
+        const stopButton = document.getElementById('stopButton');
+        const yellowWarningInput = document.getElementById('yellowWarning');
+        const redAlertInput = document.getElementById('redAlert');
+        const warningMessage = document.getElementById('warningMessage');
+
+        let updateInterval;
+
+        function updateChartAndTable() {
+            const currentValue = parseFloat(slider.value);
+            const timestamp = new Date().toLocaleString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/\//g, '-');
+            valueDisplay.textContent = currentValue.toFixed(2) + ' mg/m³';
+
+            // Add new data point to chart
+            chartData.labels.push(timestamp);
+            chartData.datasets[0].data.push(currentValue);
+            myChart.update();
+
+            // Add new row to table at the beginning
+            const newRow = tableBody.insertRow(0);
+            const cellTime = newRow.insertCell(0);
+            const cellValue = newRow.insertCell(1);
+            cellTime.textContent = timestamp;
+            cellValue.textContent = currentValue.toFixed(2) + ' mg/m³';
+
+            // Limit the chart and table to 10 entries
+            if (chartData.labels.length > 10) {
+                chartData.labels.shift();
+                chartData.datasets[0].data.shift();
+                tableBody.deleteRow(tableBody.rows.length - 1);
+            }
+
+            // Update warning messages
+            if (currentValue >= redAlertValue) {
+                warningMessage.innerHTML = '<span class="dynamic-light"></span> 空氣品質達危險等級，系統已發出警報通知(請相關作業人員應變)！';
+                warningMessage.style.display = 'block';
+                clearTimeout(timeoutId);
+            } else if (currentValue >= yellowWarningValue) {
+                warningMessage.innerHTML = '<span class="triangle-warning"></span> 已啟動空氣品質安全調控機制(自適應調控系統)';
+                warningMessage.style.display = 'block';
+                clearTimeout(timeoutId);
+            }
+
+            // Close all warnings if value is below both warning and alert lines
+            if (currentValue < yellowWarningValue && currentValue < redAlertValue) {
+                warningMessage.style.display = 'none';
+            }
+        }
+
+        function startUpdates() {
+            updateInterval = setInterval(updateChartAndTable, 1000);
+        }
+
+        function stopUpdates() {
+            clearInterval(updateInterval);
+            clearTimeout(timeoutId);
+            warningMessage.style.display = 'none';
+        }
+
+        function resetChartAndTable() {
+            slider.value = 1.5;
+            chartData.labels = [];
+            chartData.datasets[0].data = [];
+            myChart.update();
+            tableBody.innerHTML = '';
+            warningMessage.style.display = 'none';
+            clearTimeout(timeoutId);
+            updateChartAndTable();
+        }
+
+        function resetToStandard() {
+            slider.value = 1.5;
+            updateChartAndTable();
+        }
+
+        function updateWarningLines() {
+            yellowWarningValue = parseFloat(yellowWarningInput.value);
+            redAlertValue = parseFloat(redAlertInput.value);
+
+            chartOptions.plugins.annotation.annotations[0].yMin = yellowWarningValue;
+            chartOptions.plugins.annotation.annotations[0].yMax = yellowWarningValue;
+            chartOptions.plugins.annotation.annotations[1].yMin = redAlertValue;
+            chartOptions.plugins.annotation.annotations[1].yMax = redAlertValue;
+
+            myChart.update();
+        }
+
+        slider.addEventListener('input', updateChartAndTable);
+        yellowWarningInput.addEventListener('input', updateWarningLines);
+        redAlertInput.addEventListener('input', updateWarningLines);
+
+        resetToStandardButton.addEventListener('click', resetToStandard);
+        startButton.addEventListener('click', startUpdates);
+        resetButton.addEventListener('click', resetChartAndTable);
+        stopButton.addEventListener('click', stopUpdates);
+
+        // Initial update
+        updateChartAndTable();
+
+        // Start updates
+        startUpdates();
+    </script>
+</body>
+</html>
