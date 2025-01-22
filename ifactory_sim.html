@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【輝創電子 - 智慧製造計畫B1分項】
-                [VOC監測預警與自適應調控系統] 運作模擬器</title>
+    <title>【智慧製造科專B分項】
+                [噴塗室空氣濾網監測預警與自適應調控系統] 運作模擬PoC</title>
     <style>
         body { font-family: Arial, sans-serif; }
         #chartFrame, #tableFrame { margin-top: 20px; border: 1px solid #ddd; padding: 10px; }
@@ -28,18 +28,18 @@
     </style>
 </head>
 <body>
-    <h1>【輝創電子 - 智慧製造計畫B1分項】<br>[VOC監測預警與自適應調控系統] 運作模擬器 (Created By Leon)</h1>
+    <h1>【輝創電子 | 智慧製造科專B分項】<br>[噴塗室空氣濾網監測預警與自適應調控系統] 運作模擬PoC</h1>
     <div class="controls">
         <input type="range" id="slider" min="0" max="5" step="0.01" value="1.5">
         <button id="resetToStandardButton">回復標準值</button>
         <button id="startButton">Start</button>
         <button id="resetButton">Reset</button>
         <button id="stopButton">Stop</button>
-        <p>當前值: <span id="value">1.50 mg/m³</span></p>
-        <label for="yellowWarning">黃色警告線: </label>
-        <input type="number" id="yellowWarning" min="0" max="5" step="0.01" value="2.5">
+        <p>當前值: <span id="value">-10 pa</span></p>
+        <label for="yellowWarning">黃色警戒線: </label>
+        <input type="number" id="yellowWarning" min="-10" max="5" step="0.1" value="-3">
         <label for="redAlert">紅色警報線: </label>
-        <input type="number" id="redAlert" min="0" max="5" step="0.01" value="3.5">
+        <input type="number" id="redAlert" min="-10" max="0" step="0.1" value="-1">
     </div>
     <div id="chartFrame">
         <canvas id="chart"></canvas>
@@ -49,7 +49,7 @@
             <thead>
                 <tr>
                     <th>時間</th>
-                    <th>值</th>
+                    <th>壓差值</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,7 +66,7 @@
         const chartData = {
             labels: [],
             datasets: [{
-                label: 'VOC(甲苯)含量值',
+                label: '壓差值',
                 data: [],
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 2,
@@ -74,8 +74,8 @@
             }]
         };
 
-        let yellowWarningValue = 2.5;
-        let redAlertValue = 3.5;
+        let yellowWarningValue = -7;
+        let redAlertValue = 0;
         let timeoutId;
 
         const chartOptions = {
@@ -83,19 +83,19 @@
                 x: {
                     title: {
                         display: true,
-                        text: '時間'
+                        text: '時間(S)'
                     }
                 },
                 y: {
                     title: {
                         display: true,
-                        text: '값 (mg/m³)'
+                        text: '壓差值 (pa)'
                     },
                     beginAtZero: true,
                     max: 5,
                     ticks: {
                         callback: function(value) {
-                            return value + ' mg/m³';
+                            return value + ' pa';
                         }
                     }
                 }
@@ -111,7 +111,7 @@
                             borderWidth: 2,
                             label: {
                                 enabled: true,
-                                content: '警告線',
+                                content: '警戒線',
                                 position: 'end'
                             }
                         },
@@ -154,7 +154,7 @@
         function updateChartAndTable() {
             const currentValue = parseFloat(slider.value);
             const timestamp = new Date().toLocaleString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/\//g, '-');
-            valueDisplay.textContent = currentValue.toFixed(2) + ' mg/m³';
+            valueDisplay.textContent = currentValue.toFixed(2) + ' pa';
 
             // Add new data point to chart
             chartData.labels.push(timestamp);
@@ -166,7 +166,7 @@
             const cellTime = newRow.insertCell(0);
             const cellValue = newRow.insertCell(1);
             cellTime.textContent = timestamp;
-            cellValue.textContent = currentValue.toFixed(2) + ' mg/m³';
+            cellValue.textContent = currentValue.toFixed(2) + ' pa';
 
             // Limit the chart and table to 10 entries
             if (chartData.labels.length > 10) {
@@ -176,12 +176,12 @@
             }
 
             // Update warning messages
-            if (currentValue >= redAlertValue) {
-                warningMessage.innerHTML = '<span class="dynamic-light"></span> 空氣品質達危險等級，系統已發出警報通知(請相關作業人員應變)！';
+            if (currentValue <= redAlertValue) {
+                warningMessage.innerHTML = '<span class="dynamic-light"></span> 排風馬達轉速已達上限、噴塗室排風量與壓差已達警報值，系統即刻通知人員更換濾網！';
                 warningMessage.style.display = 'block';
                 clearTimeout(timeoutId);
-            } else if (currentValue >= yellowWarningValue) {
-                warningMessage.innerHTML = '<span class="triangle-warning"></span> 已啟動空氣品質安全調控機制(自適應調控系統)';
+            } else if (currentValue <= yellowWarningValue) {
+                warningMessage.innerHTML = '<span class="triangle-warning"></span> 噴塗室排風量與壓差已達警戒值，加大排風馬達轉速(自適應調控系統運作中)';
                 warningMessage.style.display = 'block';
                 clearTimeout(timeoutId);
             }
