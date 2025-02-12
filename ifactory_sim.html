@@ -177,11 +177,11 @@
 
             // Update warning messages
             if (currentValue <= redAlertValue) {
-                warningMessage.innerHTML = '<span class="dynamic-light"></span> 排風馬達轉速已達上限、噴塗室排風量與壓差已達警報值，系統即刻通知人員更換濾網！';
+                warningMessage.innerHTML = '<span class="dynamic-light"></span> 噴塗室排風馬達轉速已達上限、排風量與壓差已達警報值，請即刻更換濾網！(系統自動通知人員)';
                 warningMessage.style.display = 'block';
                 clearTimeout(timeoutId);
             } else if (currentValue <= yellowWarningValue) {
-                warningMessage.innerHTML = '<span class="triangle-warning"></span> 噴塗室排風量與壓差已達警戒值，加大排風馬達轉速(自適應調控系統運作中)';
+                warningMessage.innerHTML = '<span class="triangle-warning"></span> 噴塗室排風量與壓差已達警戒值(加大排風馬達轉速中)';
                 warningMessage.style.display = 'block';
                 clearTimeout(timeoutId);
             }
