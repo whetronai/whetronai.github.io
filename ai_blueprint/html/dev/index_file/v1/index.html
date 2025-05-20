@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<!-- Mirrored from prd-felo-meet.s3.ap-northeast-1.amazonaws.com/search-ext-index-file/html/8f025fbd-1ffc-4147-9348-163a42d1e397/63349993-7291-412f-9044-4dc1f9cc432d.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250520T164054Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIA5M4ISMZHSPSGEVS5%2F20250520%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Signature=9d2c9ec825218edbc1d982d5eac4e345d6940c6026ca5d8d2301f47de8963255 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 May 2025 16:52:48 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>輝創電子智慧轉型藍圖</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            200: '#a7f3d0',
+                            300: '#6ee7b7',
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                        serif: ['Noto Serif TC', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="../../../../cdn.jsdelivr.net/npm/mermaid%4010.6.1/dist/mermaid.min.js"></script>
+    <script src="../../../../cdn.jsdelivr.net/npm/preline%403.0.1/dist/preline.min.js" defer></script>
+    <script src="../../../../cdn.jsdelivr.net/npm/chart.js%404.4.8/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../../../cdn.jsdelivr.net/npm/material-icons%401.13.14/iconfont/material-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&amp;family=Noto+Serif+TC:wght@400;700&amp;display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-secondary-800 dark:bg-secondary-900 dark:text-secondary-100 transition-colors duration-300">
+    <!-- 主導航條 -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-secondary-800/90 backdrop-blur-sm border-b border-gray-200 dark:border-secondary-700">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 text-primary-600 dark:text-primary-400 font-bold text-xl">
+                        輝創電子
+                    </a>
+                    <nav class="hidden md:ml-8 md:flex space-x-6">
+                        <a href="#summary" class="px-1 py-2 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">計畫摘要</a>
+                        <a href="#technologies" class="px-1 py-2 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">核心技術</a>
+                        <a href="#timeline" class="px-1 py-2 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">導入時程</a>
+                        <a href="#budget" class="px-1 py-2 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">預估經費</a>
+                        <a href="#ogsm" class="px-1 py-2 text-secondary-600 dark:text-secondary-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">OGSM框架</a>
+                    </nav>
+                </div>
+                <div class="flex items-center">
+                    <button id="darkModeToggle" class="p-2 rounded-full text-secondary-600 dark:text-secondary-300 hover:bg-gray-100 dark:hover:bg-secondary-700 transition-colors">
+                        <span class="material-icons dark:hidden">dark_mode</span>
+                        <span class="material-icons hidden dark:inline">light_mode</span>
+                    </button>
+                    <div class="ml-3 md:hidden">
+                        <button id="mobileMenuButton" class="p-2 rounded-md text-secondary-600 dark:text-secondary-300 hover:bg-gray-100 dark:hover:bg-secondary-700 transition-colors">
+                            <span class="material-icons">menu</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 行動裝置選單 -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-secondary-800 border-b border-gray-200 dark:border-secondary-700">
+            <div class="container mx-auto px-4 pt-2 pb-3 space-y-1">
+                <a href="#summary" class="block px-3 py-2 rounded-md text-base font-medium text-secondary-600 dark:text-secondary-300 hover:bg-gray-100 dark:hover:bg-secondary-700 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">計畫摘要</a>
+                <a href="#technologies" class="block px-3 py-2 rounded-md text-base font-medium text-secondary-600 dark:text-secondary-300 hover:bg-gray-100 dark:hover:bg-secondary-700 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">核心技術</a>
+                <a href="#timeline" class="block px-3 py-2 rounded-md text-base font-medium text-secondary-600 dark:text-secondary-300 hover:bg-gray-100 dark:hover:bg-secondary-700 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">導入時程</a>
+                <a href="#budget" class="block px-3 py-2 rounded-md text-base font-medium text-secondary-600 dark:text-secondary-300 hover:bg-gray-100 dark:hover:bg-secondary-700 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">預估經費</a>
+                <a href="#ogsm" class="block px-3 py-2 rounded-md text-base font-medium text-secondary-600 dark:text-secondary-300 hover:bg-gray-100 dark:hover:bg-secondary-700 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">OGSM框架</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 英雄區塊 -->
+        <section class="relative py-20 md:py-32 bg-gradient-to-br from-primary-600 to-primary-800 dark:from-primary-900 dark:to-secondary-900 overflow-hidden">
+            <div class="absolute inset-0 opacity-20 dark:opacity-10">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <defs>
+                        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+                </svg>
+            </div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">輝創電子智慧轉型藍圖</h1>
+                    <p class="text-xl md:text-2xl text-white/90 mb-8">以AI、數位雙生與協作機器人賦能企業未來</p>
+                    <div class="inline-flex space-x-4">
+                        <a href="#summary" class="px-6 py-3 bg-white hover:bg-gray-100 text-primary-700 font-medium rounded-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">了解詳情</a>
+                        <a href="#technologies" class="px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-lg transition-all transform hover:scale-105 hover:bg-white/10">核心技術</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 計畫摘要 -->
+        <section id="summary" class="py-16 md:py-24 bg-white dark:bg-secondary-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-3xl font-bold text-secondary-900 dark:text-white mb-8 text-center">計畫摘要</h2>
+                    <div class="prose prose-lg dark:prose-invert max-w-none">
+                        <p class="mb-4">本提案旨在為輝創電子股份有限公司（以下簡稱「輝創電子」）擘劃一套全面的智慧轉型藍圖，透過導入業界最先進的人工智慧（AI）技術（包含生成式 AI、深度學習、機器學習）、以 NVIDIA Omniverse 平台為基礎的數位雙生（Digital Twin）技術，以及 AI 協作型機器人（Cobots），全面革新產品設計研發、生產製造工廠場域以及涵蓋產、銷、人、發、財、資、內稽內控九大循環的行政營運管理。</p>
+
+                        <p class="mb-4">輝創電子目前在倒車雷達系統、ISG、ADAS、AVM、APA、BSD 等車用電子領域已奠定良好基礎，並擁有 ERP (SAP)、PLM、MES 等成熟資訊系統。本計畫將在此基礎上，透過前瞻技術的整合應用，目標實現公司整體效率與效能的顯著提升，推動產品、服務、製程及行政管理邁向高度智慧化規模。</p>
+
+                        <p>預期效益包括大幅降低營運成本、提升生產效率、增強產品創新能力，最終達到提升企業整體獲利能力與市場競爭力的戰略目標。本計畫預計分三階段於三至五年內完成，總體預估經費約為新台幣三千萬元。</p>
+                    </div>
+                </div>
+
+                <!-- 專案概覽卡片 -->
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gray-50 dark:bg-secondary-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-800/60 rounded-full flex items-center justify-center mb-4">
+                            <span class="material-icons text-primary-600 dark:text-primary-400">schedule</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">實施期程</h3>
+                        <p class="text-secondary-600 dark:text-secondary-300">分三階段於三至五年內完成，逐步實現企業的全面智慧化轉型。</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-secondary-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-800/60 rounded-full flex items-center justify-center mb-4">
+                            <span class="material-icons text-primary-600 dark:text-primary-400">monetization_on</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">預估經費</h3>
+                        <p class="text-secondary-600 dark:text-secondary-300">總體預估經費約新台幣三千萬元，覆蓋硬體設備、軟體授權、顧問服務等投入。</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 dark:bg-secondary-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-800/60 rounded-full flex items-center justify-center mb-4">
+                            <span class="material-icons text-primary-600 dark:text-primary-400">trending_up</span>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">預期成效</h3>
+                        <p class="text-secondary-600 dark:text-secondary-300">研發週期縮短20%、生產效率提升15%、營運成本降低10%，全面提升企業競爭力。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心技術解析 -->
+        <section id="technologies" class="py-16 md:py-24 bg-gray-50 dark:bg-secondary-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-secondary-900 dark:text-white mb-12 text-center">核心技術解析</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- AI技術 -->
+                    <div class="bg-white dark:bg-secondary-800 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
+                        <div class="h-48 bg-gradient-to-r from-blue-500 to-indigo-600 flex items-center justify-center">
+                            <i class="fas fa-brain text-6xl text-white opacity-80"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg md:text-xl font-bold text-secondary-900 dark:text-white mb-2">人工智慧技術</h3>
+                            <p class="text-secondary-600 dark:text-secondary-300 mb-4">包含生成式AI、深度學習與機器學習，為各領域賦能</p>
+                            <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                <li class="flex items-start">
+                                    <span class="material-icons text-accent-600 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-1">check_circle</span>
+                                    <span>生成式AI：自動生成設計草圖、程式碼、產品文案</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="material-icons text-accent-600 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-1">check_circle</span>
+                                    <span>深度學習：從大量數據中學習模式並進行預測</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="material-icons text-accent-600 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-1">check_circle</span>
+                                    <span>機器學習：優化決策、辨識異常、自動化分析</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- 數位雙生 -->
+                    <div class="bg-white dark:bg-secondary-800 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
+                        <div class="h-48 bg-gradient-to-r from-green-500 to-teal-600 flex items-center justify-center">
+                            <i class="fas fa-cube text-6xl text-white opacity-80"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg md:text-xl font-bold text-secondary-900 dark:text-white mb-2">數位雙生技術</h3>
+                            <p class="text-secondary-600 dark:text-secondary-300 mb-4">以NVIDIA Omniverse平台為基礎，建立虛實融合環境</p>
+                            <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                <li class="flex items-start">
+                                    <span class="material-icons text-accent-600 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-1">check_circle</span>
+                                    <span>即時動態高擬真虛擬複製品</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="material-icons text-accent-600 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-1">check_circle</span>
+                                    <span>整合IoT數據、AI與模擬技術</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="material-icons text-accent-600 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-1">check_circle</span>
+                                    <span>基於OpenUSD的協作與模擬平台</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- AI協作機器人 -->
+                    <div class="bg-white dark:bg-secondary-800 rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
+                        <div class="h-48 bg-gradient-to-r from-amber-500 to-red-600 flex items-center justify-center">
+                            <i class="fas fa-robot text-6xl text-white opacity-80"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-lg md:text-xl font-bold text-secondary-900 dark:text-white mb-2">AI協作型機器人</h3>
+                            <p class="text-secondary-600 dark:text-secondary-300 mb-4">實現人機協同，提升生產效率與靈活性</p>
+                            <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                <li class="flex items-start">
+                                    <span class="material-icons text-accent-600 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-1">check_circle</span>
+                                    <span>無需護欄的安全互動設計</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="material-icons text-accent-600 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-1">check_circle</span>
+                                    <span>易於編程、部署快速、高度靈活</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="material-icons text-accent-600 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-1">check_circle</span>
+                                    <span>整合機器視覺與力覺感測功能</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 技術應用領域效益 -->
+                <div class="max-w-5xl mx-auto">
+                    <h3 class="text-2xl font-semibold text-secondary-900 dark:text-white mb-8 text-center">各領域的具體效益</h3>
+                    
+                    <div class="mb-12">
+                        <canvas id="benefitsChart" height="300"></canvas>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- 研發效益 -->
+                        <div class="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                            <h4 class="text-lg font-semibold text-primary-700 dark:text-primary-400 mb-3">產品設計研發</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start text-secondary-700 dark:text-secondary-300">
+                                    <span class="material-icons text-accent-500 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-0.5">arrow_right</span>
+                                    縮短研發週期20%
+                                </li>
+                                <li class="flex items-start text-secondary-700 dark:text-secondary-300">
+                                    <span class="material-icons text-accent-500 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-0.5">arrow_right</span>
+                                    降低開發成本15%
+                                </li>
+                                <li class="flex items-start text-secondary-700 dark:text-secondary-300">
+                                    <span class="material-icons text-accent-500 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-0.5">arrow_right</span>
+                                    提升產品創新性
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 製造效益 -->
+                        <div class="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                            <h4 class="text-lg font-semibold text-primary-700 dark:text-primary-400 mb-3">生產製造工廠</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start text-secondary-700 dark:text-secondary-300">
+                                    <span class="material-icons text-accent-500 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-0.5">arrow_right</span>
+                                    提升OEE 10-15%
+                                </li>
+                                <li class="flex items-start text-secondary-700 dark:text-secondary-300">
+                                    <span class="material-icons text-accent-500 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-0.5">arrow_right</span>
+                                    降低不良率15-20%
+                                </li>
+                                <li class="flex items-start text-secondary-700 dark:text-secondary-300">
+                                    <span class="material-icons text-accent-500 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-0.5">arrow_right</span>
+                                    減少設備非預期停機20-30%
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- 行政效益 -->
+                        <div class="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+                            <h4 class="text-lg font-semibold text-primary-700 dark:text-primary-400 mb-3">行政營運管理</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-start text-secondary-700 dark:text-secondary-300">
+                                    <span class="material-icons text-accent-500 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-0.5">arrow_right</span>
+                                    銷售預測準確度提升10-15%
+                                </li>
+                                <li class="flex items-start text-secondary-700 dark:text-secondary-300">
+                                    <span class="material-icons text-accent-500 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-0.5">arrow_right</span>
+                                    重複性任務自動化50-70%
+                                </li>
+                                <li class="flex items-start text-secondary-700 dark:text-secondary-300">
+                                    <span class="material-icons text-accent-500 dark:text-accent-400 mr-2 text-sm flex-shrink-0 mt-0.5">arrow_right</span>
+                                    強化風險控管能力
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心技術應用場景 -->
+        <section class="py-16 md:py-24 bg-white dark:bg-secondary-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-secondary-900 dark:text-white mb-12 text-center">核心技術應用場景</h2>
+                
+                <!-- 應用場景標籤頁 -->
+                <div class="max-w-5xl mx-auto">
+                    <div class="flex flex-wrap justify-center mb-6 border-b border-gray-200 dark:border-secondary-700">
+                        <button class="tech-tab-btn px-4 py-2 text-secondary-600 dark:text-secondary-300 border-b-2 border-transparent hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors active" data-tab="research">產品設計研發</button>
+                        <button class="tech-tab-btn px-4 py-2 text-secondary-600 dark:text-secondary-300 border-b-2 border-transparent hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-tab="manufacturing">生產製造工廠</button>
+                        <button class="tech-tab-btn px-4 py-2 text-secondary-600 dark:text-secondary-300 border-b-2 border-transparent hover:border-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-tab="admin">行政營運管理</button>
+                    </div>
+                    
+                    <!-- 產品設計研發 -->
+                    <div class="tech-tab-content block" id="research-content">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">AI輔助設計與模擬</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">導入生成式AI工具，協助工程師快速生成多種ADAS產品的初步設計概念，並進行設計迭代。利用機器學習分析過往產品數據與市場回饋，優化新產品的規格與功能參數。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 效益：縮短設計週期15-25%
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">產品數位雙生</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">針對ADAS系統、AVM環景系統，在Omniverse中建立高擬真數位雙生模型。模擬產品在各種真實世界條件下的運作表現，如不同光照、天氣對攝影機與雷達性能的影響。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 效益：降低實體樣品與測試成本20-30%
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">智慧研發知識庫</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">利用自然語言處理(NLP)及機器學習技術，整合公司內部研發文檔、專利資料、測試報告、市場資訊等，建立智慧研發知識庫，供研發人員快速查詢、獲取洞見。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 效益：加速研發決策流程，提高創新效率
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">感測器模擬與數據生成</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">在Omniverse建立的虛擬場景中模擬光達、雷達、攝影機等感測器的行為，生成大量用於訓練ADAS演算法的合成數據，彌補真實世界數據採集的不足。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 效益：加速AI模型訓練，提升演算法可靠性
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 bg-white dark:bg-secondary-800 border border-gray-200 dark:border-secondary-700 rounded-lg p-6 shadow-sm">
+                            <h4 class="text-xl font-semibold mb-4 text-center">ADAS產品數位雙生流程示意</h4>
+                            <div class="mermaid">
+                                graph LR
+                                    A[產品設計] --> B[Omniverse建模]
+                                    B --> C[虛擬環境測試]
+                                    C --> D[AI優化設計]
+                                    D --> E[模擬驗證]
+                                    E --> F[實體樣品測試]
+                                    F --> G[產品量產]
+                                    style A fill:#d1e7dd,stroke:#75b798
+                                    style B fill:#cfe2ff,stroke:#9ec5fe
+                                    style C fill:#cfe2ff,stroke:#9ec5fe
+                                    style D fill:#f8d7da,stroke:#f1aeb5
+                                    style E fill:#cfe2ff,stroke:#9ec5fe
+                                    style F fill:#d1e7dd,stroke:#75b798
+                                    style G fill:#d1e7dd,stroke:#75b798
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 生產製造工廠 -->
+                    <div class="tech-tab-content hidden" id="manufacturing-content">
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">工廠數位雙生建置</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">以輝創電子的生產廠房為藍本，運用Omniverse逐步建構整個工廠或關鍵生產線的數位雙生模型。整合來自MES、PLC、SCADA及IoT感測器的即時數據。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 效益：提升生產效率與產能利用率約10-20%
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">AI預測性維護</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">在生產線上關鍵設備（如SMT產線設備、自動化組裝機）部署感測器，收集運作數據，透過機器學習模型預測設備潛在故障，實現預測性維護，減少非預期停機。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 效益：減少設備非預期停機時間達20-30%
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">AI視覺檢測</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">導入基於深度學習的AI視覺檢測系統，自動辨識產品外觀瑕疵、組裝缺陷（如電子元件焊接點、機構件密合度），提升檢測效率與準確度，並與現有MES系統整合。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 效益：降低產品不良率約15-20%
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">AI協作型機器人導入</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">在輝創電子的車用電子產品組裝線，導入AI協作型機器人執行精密鎖付、插件、塗膠、標籤黏貼等任務，尤其適用於少量多樣或客製化產品線。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 效益：提高組裝與檢測的質量一致性與生產效率約10-20%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 bg-white dark:bg-secondary-800 border border-gray-200 dark:border-secondary-700 rounded-lg p-6 shadow-sm">
+                            <h4 class="text-xl font-semibold mb-4 text-center">智慧工廠數位雙生架構</h4>
+                            <div class="mermaid">
+                                graph TB
+                                    A[IoT感測器] --> B[數據匯集]
+                                    C[MES系統] --> B
+                                    D[ERP系統] --> B
+                                    B --> E[Omniverse平台]
+                                    E --> F[工廠數位雙生]
+                                    F --> G[生產監控]
+                                    F --> H[製程模擬]
+                                    F --> I[預測性維護]
+                                    F --> J[產線優化]
+                                    style A fill:#d1e7dd,stroke:#75b798
+                                    style B fill:#fff3cd,stroke:#ffda6a
+                                    style C fill:#d1e7dd,stroke:#75b798
+                                    style D fill:#d1e7dd,stroke:#75b798
+                                    style E fill:#cfe2ff,stroke:#9ec5fe
+                                    style F fill:#cfe2ff,stroke:#9ec5fe
+                                    style G fill:#f8d7da,stroke:#f1aeb5
+                                    style H fill:#f8d7da,stroke:#f1aeb5
+                                    style I fill:#f8d7da,stroke:#f1aeb5
+                                    style J fill:#f8d7da,stroke:#f1aeb5
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 行政營運管理 -->
+                    <div class="tech-tab-content hidden" id="admin-content">
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">銷售 (Sales & Marketing)</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">導入AI分析市場趨勢、客戶行為數據，進行精準銷售預測與客戶分群。利用生成式AI自動生成客製化行銷文案、產品介紹與郵件內容。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 銷售預測準確度提升10-15%
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">人 (Human Resources)</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">應用AI進行履歷智慧篩選、員工技能分析與培訓推薦。導入AI聊天機器人處理常見人事問題諮詢，提升HR服務效率。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 人事處理效率提升20%
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">財 (Finance)</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">利用AI進行智慧審核（如費用報銷）、自動化帳務處理、財務風險預警與合規性檢查。提升財務預測的準確性。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 減少50-70%的重複性財務任務
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">資 (Information)</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">應用AIOps監控IT系統健康狀況，自動偵測異常並預警。強化資訊安全防護，利用AI偵測潛在網路威脅。建構AI驅動的數據中台。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> IT系統可用性提升，安全事件減少15%
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">內稽內控</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">運用AI輔助內部稽核作業，例如自動比對交易數據、偵測異常交易模式，提升稽核效率與覆蓋範圍。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 稽核效率提升30%，異常偵測準確率提高
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-6 shadow-sm">
+                                <h4 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">供應鏈數位雙生</h4>
+                                <p class="text-secondary-700 dark:text-secondary-300 mb-4">模擬整個供應鏈網絡，包括供應商、物流、庫存等，進行風險評估、瓶頸分析與應變計畫模擬。</p>
+                                <div class="text-sm text-secondary-500 dark:text-secondary-400">
+                                    <i class="fas fa-chart-line mr-1"></i> 提升供應鏈可視性與抗風險能力
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 bg-white dark:bg-secondary-800 border border-gray-200 dark:border-secondary-700 rounded-lg p-6 shadow-sm">
+                            <h4 class="text-xl font-semibold mb-4 text-center">行政營運自動化整合示意</h4>
+                            <div class="mermaid">
+                                flowchart TD
+                                    A[數據來源] --> B{AI數據中台}
+                                    B --> C[銷售預測分析]
+                                    B --> D[HR智慧管理]
+                                    B --> E[財務自動化]
+                                    B --> F[資訊安全防護]
+                                    B --> G[內控稽核分析]
+                                    C & D & E & F & G --> H[企業數據儀表板]
+                                    H --> I[管理決策支持]
+                                    style A fill:#d1e7dd,stroke:#75b798
+                                    style B fill:#cfe2ff,stroke:#9ec5fe
+                                    style C fill:#f8d7da,stroke:#f1aeb5
+                                    style D fill:#f8d7da,stroke:#f1aeb5
+                                    style E fill:#f8d7da,stroke:#f1aeb5
+                                    style F fill:#f8d7da,stroke:#f1aeb5
+                                    style G fill:#f8d7da,stroke:#f1aeb5
+                                    style H fill:#fff3cd,stroke:#ffda6a
+                                    style I fill:#fff3cd,stroke:#ffda6a
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 階段性導入時程 -->
+        <section id="timeline" class="py-16 md:py-24 bg-gray-50 dark:bg-secondary-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-secondary-900 dark:text-white mb-12 text-center">階段性導入時程</h2>
+                
+                <div class="max-w-5xl mx-auto">
+                    <!-- 時程表 -->
+                    <div class="relative">
+                        <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-primary-200 dark:bg-primary-800 transform -translate-x-1/2"></div>
+                        
+                        <!-- 第一階段 -->
+                        <div class="md:flex items-center mb-16 md:mb-24 relative">
+                            <div class="hidden md:block absolute top-1/2 left-1/2 w-5 h-5 rounded-full bg-primary-600 dark:bg-primary-400 transform -translate-x-1/2 -translate-y-1/2 z-10"></div>
+                            
+                            <!-- 左側 -->
+                            <div class="md:w-1/2 md:pr-12 mb-6 md:mb-0">
+                                <div class="md:float-right md:max-w-sm">
+                                    <div class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 transform transition-transform hover:scale-105">
+                                        <h3 class="text-xl font-bold text-primary-700 dark:text-primary-400 mb-3">第一階段：基礎建設與試點導入</h3>
+                                        <p class="text-secondary-600 dark:text-secondary-300 mb-2"><i class="fas fa-clock mr-2"></i>12個月</p>
+                                        <div class="border-t border-gray-200 dark:border-secondary-700 my-3 pt-3">
+                                            <h4 class="font-medium mb-2 text-secondary-900 dark:text-white">主要KPI指標</h4>
+                                            <ul class="space-y-1.5 text-sm text-secondary-700 dark:text-secondary-300">
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    完成至少3個試點專案
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    模擬準確率提升>10%
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    試點流程處理時間縮短>20%
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    核心團隊完成基礎技術培訓>80%
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 右側 -->
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="md:max-w-sm">
+                                    <div class="bg-primary-50 dark:bg-primary-900/30 rounded-lg p-5">
+                                        <h4 class="font-semibold mb-3 text-secondary-900 dark:text-white">重點工作內容</h4>
+                                        <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">1.</span>
+                                                <span>現況評估與需求分析</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">2.</span>
+                                                <span>核心團隊組建與賦能</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">3.</span>
+                                                <span>基礎設施建置</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">4.</span>
+                                                <span>試點專案啟動 (3-4個)</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 第二階段 -->
+                        <div class="md:flex items-center mb-16 md:mb-24 relative">
+                            <div class="hidden md:block absolute top-1/2 left-1/2 w-5 h-5 rounded-full bg-primary-600 dark:bg-primary-400 transform -translate-x-1/2 -translate-y-1/2 z-10"></div>
+                            
+                            <!-- 左側 (在手機版是頂部) -->
+                            <div class="md:w-1/2 md:pr-12 mb-6 md:mb-0">
+                                <div class="md:float-right md:max-w-sm">
+                                    <div class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 transform transition-transform hover:scale-105">
+                                        <h3 class="text-xl font-bold text-primary-700 dark:text-primary-400 mb-3">第二階段：擴展應用與系統整合</h3>
+                                        <p class="text-secondary-600 dark:text-secondary-300 mb-2"><i class="fas fa-clock mr-2"></i>24個月</p>
+                                        <div class="border-t border-gray-200 dark:border-secondary-700 my-3 pt-3">
+                                            <h4 class="font-medium mb-2 text-secondary-900 dark:text-white">主要KPI指標</h4>
+                                            <ul class="space-y-1.5 text-sm text-secondary-700 dark:text-secondary-300">
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    新產品平均研發週期縮短15%
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    工廠整體設備效率(OEE)提升10%
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    生產不良率降低10%
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    關鍵行政流程自動化覆蓋率達到50%
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 右側 (在手機版是底部) -->
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="md:max-w-sm">
+                                    <div class="bg-primary-50 dark:bg-primary-900/30 rounded-lg p-5">
+                                        <h4 class="font-semibold mb-3 text-secondary-900 dark:text-white">重點工作內容</h4>
+                                        <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">1.</span>
+                                                <span>成功試點規模化推廣</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">2.</span>
+                                                <span>工廠級數位雙生建構</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">3.</span>
+                                                <span>AI協作型機器人導入</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">4.</span>
+                                                <span>AI平台與數據中台建置</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">5.</span>
+                                                <span>深化行政管理AI應用</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 第三階段 -->
+                        <div class="md:flex items-center relative">
+                            <div class="hidden md:block absolute top-1/2 left-1/2 w-5 h-5 rounded-full bg-primary-600 dark:bg-primary-400 transform -translate-x-1/2 -translate-y-1/2 z-10"></div>
+                            
+                            <!-- 左側 -->
+                            <div class="md:w-1/2 md:pr-12 mb-6 md:mb-0">
+                                <div class="md:float-right md:max-w-sm">
+                                    <div class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 transform transition-transform hover:scale-105">
+                                        <h3 class="text-xl font-bold text-primary-700 dark:text-primary-400 mb-3">第三階段：全面優化與智慧轉型</h3>
+                                        <p class="text-secondary-600 dark:text-secondary-300 mb-2"><i class="fas fa-clock mr-2"></i>12-24個月</p>
+                                        <div class="border-t border-gray-200 dark:border-secondary-700 my-3 pt-3">
+                                            <h4 class="font-medium mb-2 text-secondary-900 dark:text-white">主要KPI指標</h4>
+                                            <ul class="space-y-1.5 text-sm text-secondary-700 dark:text-secondary-300">
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    新產品平均研發週期再縮短5-10%
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    工廠OEE再提升5-8%
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    整體營運成本降低5-10%
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <span class="text-accent-600 dark:text-accent-400 mr-1.5">•</span>
+                                                    專案整體投資報酬率達到預期目標
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 右側 -->
+                            <div class="md:w-1/2 md:pl-12">
+                                <div class="md:max-w-sm">
+                                    <div class="bg-primary-50 dark:bg-primary-900/30 rounded-lg p-5">
+                                        <h4 class="font-semibold mb-3 text-secondary-900 dark:text-white">重點工作內容</h4>
+                                        <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">1.</span>
+                                                <span>AI與數位雙生全面覆蓋</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">2.</span>
+                                                <span>高階智慧應用深化</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">3.</span>
+                                                <span>持續優化與創新</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">4.</span>
+                                                <span>企業文化塑造</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span class="text-primary-600 dark:text-primary-400 mr-2">5.</span>
+                                                <span>探索新商業模式</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 專案預估經費 -->
+        <section id="budget" class="py-16 md:py-24 bg-white dark:bg-secondary-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-secondary-900 dark:text-white mb-12 text-center">專案預估經費</h2>
+                
+                <div class="max-w-5xl mx-auto">
+                    <div class="bg-gray-50 dark:bg-secondary-700 rounded-xl p-6 md:p-8 shadow-md mb-12">
+                        <p class="mb-6 text-secondary-700 dark:text-secondary-300">本專案預計於3至5年內投入總經費約<span class="font-semibold text-primary-700 dark:text-primary-400">新台幣3,000萬元</span>。依據不同部署方式，經費結構略有差異。</p>
+                        
+                        <!-- 圓餅圖顯示預算分配 -->
+                        <div class="mb-8">
+                            <canvas id="budgetChart" height="300"></canvas>
+                        </div>
+                        
+                        <!-- 部署方式比較 -->
+                        <div class="mb-6">
+                            <h3 class="text-lg font-semibold mb-4 text-secondary-900 dark:text-white">不同部署方式比較</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <!-- 本地部署 -->
+                                <div class="bg-white dark:bg-secondary-800 rounded-lg p-5 shadow-sm hover:shadow transition-shadow">
+                                    <h4 class="font-medium text-center mb-3 pb-2 border-b border-gray-200 dark:border-secondary-700 text-primary-700 dark:text-primary-400">本地重點部署</h4>
+                                    <div class="space-y-2 text-sm text-secondary-700 dark:text-secondary-300">
+                                        <p><span class="font-medium text-secondary-900 dark:text-white">優勢：</span>數據安全與系統自主性有較高掌控，長期TCO可能較具優勢</p>
+                                        <p><span class="font-medium text-secondary-900 dark:text-white">劣勢：</span>初期硬體投資較高，擴展性受限</p>
+                                        <p class="mt-4 text-center font-medium text-primary-700 dark:text-primary-400">總經費: 約3,000萬元</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- 混合雲 -->
+                                <div class="bg-primary-50 dark:bg-primary-900/30 rounded-lg p-5 shadow-sm hover:shadow transition-shadow border-2 border-primary-400 dark:border-primary-600">
+                                    <h4 class="font-medium text-center mb-3 pb-2 border-b border-primary-200 dark:border-primary-800 text-primary-700 dark:text-primary-400">混合雲部署 (建議方案)</h4>
+                                    <div class="space-y-2 text-sm text-secondary-700 dark:text-secondary-300">
+                                        <p><span class="font-medium text-secondary-900 dark:text-white">優勢：</span>兼顧安全性、效能、彈性與成本效益，初期資本支出較低</p>
+                                        <p><span class="font-medium text-secondary-900 dark:text-white">劣勢：</span>架構複雜度較高，需管理混合環境</p>
+                                        <p class="mt-4 text-center font-medium text-primary-700 dark:text-primary-400">總經費: 約2,950萬元</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- 雲端部署 -->
+                                <div class="bg-white dark:bg-secondary-800 rounded-lg p-5 shadow-sm hover:shadow transition-shadow">
+                                    <h4 class="font-medium text-center mb-3 pb-2 border-b border-gray-200 dark:border-secondary-700 text-primary-700 dark:text-primary-400">雲端重點部署</h4>
+                                    <div class="space-y-2 text-sm text-secondary-700 dark:text-secondary-300">
+                                        <p><span class="font-medium text-secondary-900 dark:text-white">優勢：</span>高度擴展彈性，可快速取用最新AI雲端服務</p>
+                                        <p><span class="font-medium text-secondary-900 dark:text-white">劣勢：</span>長期雲端服務訂閱費用較高，數據傳輸成本高</p>
+                                        <p class="mt-4 text-center font-medium text-primary-700 dark:text-primary-400">總經費: 約3,050萬元</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 經費明細表 -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 dark:divide-secondary-700 border border-gray-200 dark:border-secondary-700 rounded-lg">
+                            <thead class="bg-gray-100 dark:bg-secondary-700">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-secondary-500 dark:text-secondary-300 uppercase tracking-wider">項目</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-secondary-500 dark:text-secondary-300 uppercase tracking-wider">預估費用 (新台幣) - 本地重點部署</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-secondary-500 dark:text-secondary-300 uppercase tracking-wider">預估費用 (新台幣) - 混合雲/雲端重點</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-secondary-500 dark:text-secondary-300 uppercase tracking-wider">備註</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-secondary-800 divide-y divide-gray-200 dark:divide-secondary-700">
+                                <tr>
+                                    <td colspan="4" class="px-6 py-2 text-sm font-medium bg-gray-50 dark:bg-secondary-700 text-secondary-900 dark:text-white">一、硬體設備採購與建置</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">AI運算/Omniverse伺服器叢集</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">800萬 - 1,000萬</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">300萬 - 500萬</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">本地部署需較高初期投資；混合雲可部分上雲，降低本地硬體需求。</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">AI協作型機器人 (含周邊)</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">500萬 - 700萬</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">500萬 - 700萬</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">機器人本體成本與部署方式關聯較小。</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">IoT感測器與網路基礎設施升級</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">150萬 - 250萬</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">150萬 - 250萬</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">數據採集基礎建設。</td>
+                                </tr>
+                                
+                                <tr>
+                                    <td colspan="4" class="px-6 py-2 text-sm font-medium bg-gray-50 dark:bg-secondary-700 text-secondary-900 dark:text-white">二、軟體採購與授權</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">NVIDIA Omniverse Enterprise授權</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">200萬 - 300萬 (年費或訂閱制)</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">200萬 - 300萬 (年費或訂閱制)</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">依使用者數量或伺服器規模計價。</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">AI開發平台/演算法工具套件</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">150萬 - 250萬</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">200萬 - 400萬 (含雲端服務)</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">本地部署為軟體授權；雲端方案通常包含PaaS服務。</td>
+                                </tr>
+                                
+                                <!-- 其他項目可以繼續添加 -->
+                                <tr class="bg-primary-50 dark:bg-primary-900/30">
+                                    <td class="px-6 py-4 text-sm font-medium text-secondary-900 dark:text-white">總經費預估 (3-5年)</td>
+                                    <td class="px-6 py-4 text-sm font-medium text-secondary-900 dark:text-white">2,900萬 - 4,100萬</td>
+                                    <td class="px-6 py-4 text-sm font-medium text-secondary-900 dark:text-white">2,800萬 - 4,050萬</td>
+                                    <td class="px-6 py-4 text-sm text-secondary-700 dark:text-secondary-300">整體經費控制在3,000萬左右</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OGSM框架 -->
+        <section id="ogsm" class="py-16 md:py-24 bg-gray-50 dark:bg-secondary-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-secondary-900 dark:text-white mb-12 text-center">OGSM 策略框架</h2>
+                
+                <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 目標與具體目標 -->
+                    <div>
+                        <div class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 mb-8">
+                            <h3 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">總體目標 (Objective)</h3>
+                            <p class="text-secondary-700 dark:text-secondary-300">透過導入尖端AI技術、數位雙生與AI協作型機器人，全面提升輝創電子在產品研發、生產製造及行政營運的智慧化水準，顯著強化企業核心競爭力，實現永續獲利成長，成為全球汽車電子產業智慧化解決方案的領導者。</p>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">具體目標 (Goals)</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white flex items-center">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-400 flex items-center justify-center mr-2 text-sm">G1</span>
+                                        研發創新領先
+                                    </h4>
+                                    <p class="text-secondary-700 dark:text-secondary-300 pl-8">未來三年內，新產品（特別是ADAS、AVM、APA相關）平均研發週期縮短20%，因設計優化帶來的直接成本降低10%，專利申請數量提升15%。</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white flex items-center">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-400 flex items-center justify-center mr-2 text-sm">G2</span>
+                                        智慧製造卓越
+                                    </h4>
+                                    <p class="text-secondary-700 dark:text-secondary-300 pl-8">未來三年內，主要生產廠區整體設備效率(OEE)提升15%，產品首次通過率(FPY)提升5%，單位產品製造成本降低8%。</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white flex items-center">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-400 flex items-center justify-center mr-2 text-sm">G3</span>
+                                        營運效能躍升
+                                    </h4>
+                                    <p class="text-secondary-700 dark:text-secondary-300 pl-8">未來三年內，關鍵行政作業平均處理時間縮短30%，行政營運費用佔營收比重降低1個百分點。</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white flex items-center">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-400 flex items-center justify-center mr-2 text-sm">G4</span>
+                                        企業價值增長
+                                    </h4>
+                                    <p class="text-secondary-700 dark:text-secondary-300 pl-8">未來五年內，本專案導入後，公司整體淨利率提升2-3%，客戶滿意度提升10%，成功拓展至少一個新興智慧化產品市場。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 策略與衡量 -->
+                    <div>
+                        <div class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 mb-8">
+                            <h3 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">策略 (Strategies)</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white flex items-center">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-800 text-accent-600 dark:text-accent-400 flex items-center justify-center mr-2 text-sm">S1</span>
+                                        技術賦能平台化
+                                    </h4>
+                                    <ul class="text-sm text-secondary-700 dark:text-secondary-300 space-y-1 pl-8">
+                                        <li class="flex items-start">
+                                            <span class="text-accent-500 dark:text-accent-400 mr-1.5">•</span>
+                                            建立以NVIDIA Omniverse為核心的企業級數位雙生協作平台
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent-500 dark:text-accent-400 mr-1.5">•</span>
+                                            全面導入並深化AI技術應用
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent-500 dark:text-accent-400 mr-1.5">•</span>
+                                            階段性部署AI協作型機器人
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white flex items-center">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-800 text-accent-600 dark:text-accent-400 flex items-center justify-center mr-2 text-sm">S2</span>
+                                        流程再造智慧化
+                                    </h4>
+                                    <ul class="text-sm text-secondary-700 dark:text-secondary-300 space-y-1 pl-8">
+                                        <li class="flex items-start">
+                                            <span class="text-accent-500 dark:text-accent-400 mr-1.5">•</span>
+                                            以數位雙生驅動產品研發流程變革
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent-500 dark:text-accent-400 mr-1.5">•</span>
+                                            打造數據驅動的智慧工廠運營模式
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent-500 dark:text-accent-400 mr-1.5">•</span>
+                                            透過AI與RPA技術，全面檢視行政流程
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white flex items-center">
+                                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-accent-100 dark:bg-accent-800 text-accent-600 dark:text-accent-400 flex items-center justify-center mr-2 text-sm">S3</span>
+                                        人才培育與文化轉型
+                                    </h4>
+                                    <ul class="text-sm text-secondary-700 dark:text-secondary-300 space-y-1 pl-8">
+                                        <li class="flex items-start">
+                                            <span class="text-accent-500 dark:text-accent-400 mr-1.5">•</span>
+                                            成立跨部門「智慧轉型推動辦公室」
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent-500 dark:text-accent-400 mr-1.5">•</span>
+                                            實施全面的數位技能提升計畫
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="text-accent-500 dark:text-accent-400 mr-1.5">•</span>
+                                            塑造擁抱變革、鼓勵創新的企業文化
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6">
+                            <h3 class="text-lg font-semibold mb-4 text-primary-700 dark:text-primary-400">衡量 (Measures)</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-3">
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white text-sm">研發績效指標</h4>
+                                    <ul class="text-xs text-secondary-700 dark:text-secondary-300 space-y-1">
+                                        <li>• 新產品研發週期 (平均天數)</li>
+                                        <li>• 研發專案成本達成率 (%)</li>
+                                        <li>• 年度新增專利數 (件)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-3">
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white text-sm">製造績效指標</h4>
+                                    <ul class="text-xs text-secondary-700 dark:text-secondary-300 space-y-1">
+                                        <li>• 整體設備效率OEE (%)</li>
+                                        <li>• 產品首次通過率FPY (%)</li>
+                                        <li>• 單位產品製造成本 (元)</li>
+                                        <li>• 設備平均故障間隔時間MTBF (時)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-3">
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white text-sm">行政績效指標</h4>
+                                    <ul class="text-xs text-secondary-700 dark:text-secondary-300 space-y-1">
+                                        <li>• 行政流程平均處理時間 (時/天)</li>
+                                        <li>• 行政自動化流程覆蓋率 (%)</li>
+                                        <li>• 員工對AI工具輔助工作滿意度</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 dark:bg-secondary-700 rounded-lg p-3">
+                                    <h4 class="font-medium mb-2 text-secondary-900 dark:text-white text-sm">企業價值指標</h4>
+                                    <ul class="text-xs text-secondary-700 dark:text-secondary-300 space-y-1">
+                                        <li>• 公司淨利率 (%)</li>
+                                        <li>• 客戶滿意度指數 (CSI)</li>
+                                        <li>• 專案投資報酬率ROI (%)</li>
+                                        <li>• 員工生產力指標 (人均產值)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 總結與行動建議 -->
+        <section class="py-16 md:py-24 bg-white dark:bg-secondary-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-secondary-900 dark:text-white mb-8">總結與行動建議</h2>
+                    
+                    <div class="prose prose-lg mx-auto dark:prose-invert">
+                        <p>透過實施本智慧轉型藍圖，輝創電子將能夠顯著提升研發創新能力、生產製造效率與行政運作效能，進而強化企業整體競爭力。基於上述分析，我們建議：</p>
+                        
+                        <ol class="text-left">
+                            <li>以試點專案快速驗證方式開始轉型，累積成功經驗與信心</li>
+                            <li>採用混合雲架構，兼顧成本效益性與系統靈活性</li>
+                            <li>優先導入可快速見效的AI預測性維護與視覺檢測系統</li>
+                            <li>持續投資於數位雙生技術，為未來的創新奠定基礎</li>
+                            <li>重視員工數位轉型培訓，使技術與人才同步發展</li>
+                        </ol>
+                        
+                        <p>面對日新月異的競爭環境，及早啟動智慧轉型已是當務之急。透過系統性、階段性的導入計畫，輝創電子不僅能降本增效，更能開創全新商業模式與市場機會，邁向更繁榮的未來。</p>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <a href="#summary" class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center">
+                            <span>開始智慧轉型之旅</span>
+                            <span class="material-icons ml-2">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 回到頂部按鈕 -->
+        <button id="backToTop" class="fixed bottom-8 right-8 bg-primary-600 dark:bg-primary-700 hover:bg-primary-700 dark:hover:bg-primary-600 text-white rounded-full p-2 shadow-md hover:shadow-lg transition-all opacity-0 invisible">
+            <span class="material-icons">arrow_upward</span>
+        </button>
+    </main>
+
+    <!-- 頁腳 -->
+    <footer class="bg-secondary-900 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">關於作者</h3>
+                    <p class="text-secondary-300 mb-4">本文件由Leon.T撰寫，內容包括輝創電子的智慧轉型規劃，透過人工智慧、數位雙生與協作型機器人提升企業競爭力。</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">聯絡方式</h3>
+                    <div class="space-y-2 text-secondary-300">
+                        <div class="flex items-center">
+                            <span class="material-icons mr-2 text-primary-400">email</span>
+                            <span>contact@leon-t.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="material-icons mr-2 text-primary-400">smartphone</span>
+                            <span>+886 912 345 678</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">關注我們</h3>
+                    <div class="flex space-x-4">
+                        <a href="https://twitter.com/leon_t" target="_blank" class="text-secondary-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/leon-t" target="_blank" class="text-secondary-300 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="https://github.com/leon-t" target="_blank" class="text-secondary-300 hover:text-white transition-colors">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-secondary-700 pt-8 text-center text-secondary-400">
+                <p>&copy; 2025 Leon.T. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 初始化Mermaid
+        mermaid.initialize({ 
+            theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+            securityLevel: 'loose',
+            startOnLoad: true 
+        });
+
+        // 建立圖表
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化所有圖表
+            initializeCharts();
+            
+            // 設置技術標籤頁切換功能
+            setupTabs();
+            
+            // 設置暗色模式切換
+            setupDarkModeToggle();
+            
+            // 設置手機導航
+            setupMobileNavigation();
+            
+            // 設置回到頂部按鈕
+            setupBackToTopButton();
+            
+            // 平滑滾動
+            setupSmoothScroll();
+            
+            // 初始化Preline UI
+            if (typeof HSStaticMethods !== 'undefined') {
+                HSStaticMethods.autoInit();
+            }
+        });
+
+        function initializeCharts() {
+            // 效益圖表
+            const benefitsCtx = document.getElementById('benefitsChart');
+            if (benefitsCtx) {
+                const benefitsChart = new Chart(benefitsCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['產品設計研發', '生產製造工廠', '行政營運管理'],
+                        datasets: [
+                            {
+                                label: '效率提升 (%)',
+                                data: [20, 15, 30],
+                                backgroundColor: 'rgba(14, 165, 233, 0.7)',
+                                borderColor: 'rgba(14, 165, 233, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: '成本降低 (%)',
+                                data: [15, 10, 25],
+                                backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                                borderColor: 'rgba(16, 185, 129, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: '預期效益比較'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: '百分比 (%)'
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // 在暗色模式切換時更新圖表顏色
+                const updateChartColors = () => {
+                    const isDark = document.documentElement.classList.contains('dark');
+                    benefitsChart.options.scales.y.grid = {
+                        color: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                    };
+                    benefitsChart.options.scales.x.grid = {
+                        color: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                    };
+                    benefitsChart.options.scales.y.ticks = {
+                        color: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
+                    };
+                    benefitsChart.options.scales.x.ticks = {
+                        color: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
+                    };
+                    benefitsChart.options.plugins.title.color = isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)';
+                    benefitsChart.options.plugins.legend.labels = {
+                        color: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
+                    };
+                    benefitsChart.update();
+                };
+                
+                updateChartColors();
+                document.getElementById('darkModeToggle').addEventListener('click', updateChartColors);
+            }
+
+            // 預算圓餅圖
+            const budgetCtx = document.getElementById('budgetChart');
+            if (budgetCtx) {
+                const budgetChart = new Chart(budgetCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['硬體設備採購', '軟體採購與授權', '顧問導入與客製開發', '教育訓練與變革管理', '營運維護與技術支援', '不可預見費用'],
+                        datasets: [{
+                            data: [35, 20, 20, 10, 5, 10],
+                            backgroundColor: [
+                                'rgba(14, 165, 233, 0.7)',
+                                'rgba(16, 185, 129, 0.7)',
+                                'rgba(234, 88, 12, 0.7)',
+                                'rgba(168, 85, 247, 0.7)',
+                                'rgba(236, 72, 153, 0.7)',
+                                'rgba(59, 130, 246, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(14, 165, 233, 1)',
+                                'rgba(16, 185, 129, 1)',
+                                'rgba(234, 88, 12, 1)',
+                                'rgba(168, 85, 247, 1)',
+                                'rgba(236, 72, 153, 1)',
+                                'rgba(59, 130, 246, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            title: {
+                                display: true,
+                                text: '預估經費分配比例'
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        var label = context.label || '';
+                                        var value = context.formattedValue;
+                                        return label + ': ' + value + '% (約' + (context.raw * 30).toFixed(0) + '萬元)';
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                
+                // 在暗色模式切換時更新圖表顏色
+                const updateBudgetChartColors = () => {
+                    const isDark = document.documentElement.classList.contains('dark');
+                    budgetChart.options.plugins.title.color = isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)';
+                    budgetChart.options.plugins.legend.labels = {
+                        color: isDark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
+                    };
+                    budgetChart.update();
+                };
+                
+                updateBudgetChartColors();
+                document.getElementById('darkModeToggle').addEventListener('click', updateBudgetChartColors);
+            }
+        }
+
+        function setupTabs() {
+            const tabButtons = document.querySelectorAll('.tech-tab-btn');
+            const tabContents = document.querySelectorAll('.tech-tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // 移除所有按鈕的active狀態
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'text-primary-600', 'dark:text-primary-400', 'border-primary-500');
+                        btn.classList.add('text-secondary-600', 'dark:text-secondary-300', 'border-transparent');
+                    });
+                    
+                    // 設置當前按鈕為active
+                    button.classList.add('active', 'text-primary-600', 'dark:text-primary-400', 'border-primary-500');
+                    button.classList.remove('text-secondary-600', 'dark:text-secondary-300', 'border-transparent');
+                    
+                    // 隱藏所有內容
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                        content.classList.remove('block');
+                    });
+                    
+                    // 顯示對應的內容
+                    const tabId = button.getAttribute('data-tab');
+                    const activeContent = document.getElementById(tabId + '-content');
+                    if (activeContent) {
+                        activeContent.classList.remove('hidden');
+                        activeContent.classList.add('block');
+                        
+                        // 重繪Mermaid圖表
+                        const mermaidDivs = activeContent.querySelectorAll('.mermaid');
+                        if (mermaidDivs.length > 0) {
+                            mermaid.init(undefined, mermaidDivs);
+                        }
+                    }
+                });
+            });
+        }
+
+        function setupDarkModeToggle() {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const htmlElement = document.documentElement;
+            
+            // 檢查系統偏好
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                htmlElement.classList.add('dark');
+            }
+            
+            // 檢查本地儲存
+            if (localStorage.getItem('darkMode') === 'true') {
+                htmlElement.classList.add('dark');
+            } else if (localStorage.getItem('darkMode') === 'false') {
+                htmlElement.classList.remove('dark');
+            }
+            
+            darkModeToggle.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    localStorage.setItem('darkMode', 'false');
+                    mermaid.initialize({ theme: 'default' });
+                } else {
+                    htmlElement.classList.add('dark');
+                    localStorage.setItem('darkMode', 'true');
+                    mermaid.initialize({ theme: 'dark' });
+                }
+                
+                // 重繪所有Mermaid圖表
+                const mermaidDivs = document.querySelectorAll('.mermaid');
+                mermaid.init(undefined, mermaidDivs);
+            });
+        }
+
+        function setupMobileNavigation() {
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // 點擊選單項目後自動關閉選單
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        function setupBackToTopButton() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopButton.classList.remove('opacity-0', 'invisible');
+                    backToTopButton.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopButton.classList.remove('opacity-100', 'visible');
+                    backToTopButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // 調整頂部間距
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+<!-- Mirrored from prd-felo-meet.s3.ap-northeast-1.amazonaws.com/search-ext-index-file/html/8f025fbd-1ffc-4147-9348-163a42d1e397/63349993-7291-412f-9044-4dc1f9cc432d.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250520T164054Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=AKIA5M4ISMZHSPSGEVS5%2F20250520%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Signature=9d2c9ec825218edbc1d982d5eac4e345d6940c6026ca5d8d2301f47de8963255 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 May 2025 16:52:50 GMT -->
+</html>
