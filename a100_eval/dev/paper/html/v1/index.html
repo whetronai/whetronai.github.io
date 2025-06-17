@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<!-- Mirrored from prd-felo-meet.s3.ap-northeast-1.amazonaws.com/search-ext-index-file/html/60fcea79-0c25-4535-a75a-db99766b9ec7/01954692-50eb-4eab-a50d-0a554e28ab72.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250617T104308Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIA5M4ISMZHSPSGEVS5%2F20250617%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Signature=db9846ebdbcb2e69ccf5de3ebb3c0c7a9034170b02ace1163ac6bb0e007cf67a by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Jun 2025 11:18:16 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA DGX Station Tesla V100 大型語言模型推理能力分析報告</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script src="../../../../cdn.jsdelivr.net/npm/preline%403.0.1/dist/preline.min.js"></script>
+    <script src="../../../../cdn.jsdelivr.net/npm/mermaid%4010.6.1/dist/mermaid.min.js"></script>
+    <script src="../../../../cdn.jsdelivr.net/npm/echarts%405.4.3/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e'
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            500: '#64748b',
+                            600: '#475569',
+                            900: '#0f172a'
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif'],
+                        'mono': ['SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script><style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Dark Mode Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <button onclick="toggleDarkMode()" class="p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700">
+            <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+            <i class="fas fa-moon text-blue-400 hidden dark:block"></i>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center space-x-4 fade-in-up">
+                <div class="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl">
+                    <i class="fas fa-microchip text-white text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                        NVIDIA DGX Station Tesla V100
+                    </h1>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">大型語言模型推理能力分析報告</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Executive Summary -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8 fade-in-up">
+            <h2 class="text-2xl font-bold mb-6 flex items-center">
+                <i class="fas fa-chart-line mr-3 text-blue-500"></i>
+                執行摘要
+            </h2>
+            <div class="prose dark:prose-invert max-w-none">
+                <p class="text-lg leading-relaxed mb-4">
+                    搭載四張 NVIDIA Tesla V100 32GB GPU 的 DGX Station 是一套功能強大的 AI 工作站，其總計 128GB 的 GPU 記憶體理論上能夠以 FP16 半精度運行參數規模達 <span class="font-bold text-blue-600 dark:text-blue-400">600億 (60B)</span> 以下的大型語言模型。</p>
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-400 p-4 my-6">
+                    <p class="text-amber-800 dark:text-amber-200"><i class="fas fa-exclamation-triangle mr-2"></i>
+                        <strong>關鍵限制：</strong>Tesla V100 的Volta 架構不支援 Flash Attention 等新世代加速技術，導致實際推理吞吐量明顯較低。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hardware Specifications -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-bold mb-8 flex items-center fade-in-up">
+            <i class="fas fa-server mr-3 text-green-500"></i>
+            硬體規格分析
+        </h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <!-- DGX Station Image -->
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-semibold mb-4">NVIDIA DGX Station 內部結構</h3>
+                <img src="https://www.orixrentec.jp/image.jsp?id=7291" alt="NVIDIA DGX Station 內部結構" class="w-full rounded-lg mb-4">
+                <p class="text-gray-600 dark:text-gray-400 text-sm">展示四張 Tesla V100 GPU 的高密度配置</p>
+            </div>
+
+            <!-- Tesla V100 Image -->
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-semibold mb-4">NVIDIA Tesla V100 GPU</h3>
+                <img src="../../../../www.elsa-jp.co.jp/wp-content/uploads/2019/03/nvidia_tesla_v100_3qtr.png" alt="NVIDIA Tesla V100 GPU" class="w-full rounded-lg mb-4">
+                <p class="text-gray-600 dark:text-gray-400 text-sm">Volta 架構的企業級 GPU，專為 AI 運算設計</p>
+            </div>
+        </div>
+
+        <!-- Specifications Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg">
+                        <i class="fas fa-memory text-blue-600 dark:text-blue-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold ml-3">GPU 記憶體</h3>
+                </div>
+                <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">128GB</p>
+                <p class="text-gray-600 dark:text-gray-400">4 x 32GB HBM2</p>
+            </div>
+
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="p-2 bg-green-100 dark:bg-green-900 rounded-lg">
+                        <i class="fas fa-bolt text-green-600 dark:text-green-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold ml-3">CUDA 核心</h3>
+                </div>
+                <p class="text-3xl font-bold text-green-600 dark:text-green-400">20,480</p>
+                <p class="text-gray-600 dark:text-gray-400">4 x 5,120 核心</p>
+            </div>
+
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="p-2 bg-purple-100 dark:bg-purple-900 rounded-lg">
+                        <i class="fas fa-tachometer-alt text-purple-600 dark:text-purple-400"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold ml-3">FP16 效能</h3>
+                </div>
+                <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">500</p>
+                <p class="text-gray-600 dark:text-gray-400">TFLOPS</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memory Requirements Chart -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-bold mb-8 flex items-center fade-in-up">
+            <i class="fas fa-chart-bar mr-3 text-orange-500"></i>
+            LLM 記憶體需求分析
+        </h2>
+        
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">FP16 精度下的 VRAM 需求估算</h3>
+                <p class="text-gray-600 dark:text-gray-400">公式：所需 VRAM (GB) ≈ 模型參數數量 (Billion) × 2</p>
+            </div>
+            <div id="memoryChart" style="width: 100%; height: 400px;"></div>
+        </div>
+
+        <!-- Compatibility Table -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+            <div class="px-6 py-4 bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
+                <h3 class="text-xl font-semibold">模型相容性分析</h3>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-gray-50 dark:bg-gray-700">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">模型參數規模</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">所需 VRAM</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">相容性</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">備註</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">7B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">~14 GB</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"><i class="fas fa-check mr-1"></i>完全支援
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">可輕鬆運行，有充足空間</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">13B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">~26 GB</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"><i class="fas fa-check mr-1"></i>完全支援
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">可輕鬆運行</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">32B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">~64 GB</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100"><i class="fas fa-exclamation-triangle mr-1"></i>需要跨 GPU
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">需要模型平行化</td>
+                        </tr>
+                        <tr class="bg-blue-50 dark:bg-blue-900/20">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">60B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">~120 GB</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-orange-100 text-orange-800 dark:bg-orange-800 dark:text-orange-100"><i class="fas fa-warning mr-1"></i>理論極限
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">接近系統記憶體上限</td>
+                        </tr><tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">70B</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">~140 GB</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100"><i class="fas fa-times mr-1"></i>不支援
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-500 dark:text-gray-400">超出系統總記憶體</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Limitations -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-bold mb-8 flex items-center fade-in-up">
+            <i class="fas fa-exclamation-triangle mr-3 text-red-500"></i>
+            技術限制分析
+        </h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-red-500">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-bolt-slash text-red-500 text-xl mr-3"></i>
+                    <h3 class="text-lg font-semibold">Flash Attention 支援</h3>
+                </div>
+                <p class="text-red-600 dark:text-red-400 font-medium mb-2">不支援</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">V100 計算能力 7.0，需要 8.0+ 才能支援 Flash Attention</p>
+            </div>
+
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-orange-500">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-calculator text-orange-500 text-xl mr-3"></i>
+                    <h3 class="text-lg font-semibold">BF16 精度</h3>
+                </div>
+                <p class="text-orange-600 dark:text-orange-400 font-medium mb-2">不支援</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">僅支援 FP16，可能影響模型相容性</p>
+            </div>
+
+            <div class="card-hover bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border-l-4 border-yellow-500">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-cogs text-yellow-500 text-xl mr-3"></i>
+                    <h3 class="text-lg font-semibold">推理框架</h3>
+                </div>
+                <p class="text-yellow-600 dark:text-yellow-400 font-medium mb-2">有限支援</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">vLLM 等框架無法使用最優化後端</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Comparison -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-bold mb-8 flex items-center fade-in-up">
+            <i class="fas fa-tachometer-alt mr-3 text-purple-500"></i>
+            效能比較分析
+        </h2>
+
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-semibold mb-4">GPU 世代效能對比</h3>
+            <div id="performanceChart" style="width: 100%; height: 400px;"></div>
+        </div>
+    </section>
+
+    <!-- Recommendations -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-bold mb-8 flex items-center fade-in-up">
+            <i class="fas fa-lightbulb mr-3 text-yellow-500"></i>
+            結論與建議
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-semibold mb-4 flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                    適用場景
+                </h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-circle text-green-500 text-xs mt-2 mr-3"></i>
+                        <span>中小型 LLM (60B 以下) 的研發與測試</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-circle text-green-500 text-xs mt-2 mr-3"></i>
+                        <span>多 GPU 模型平行化架構驗證</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-circle text-green-500 text-xs mt-2 mr-3"></i>
+                        <span>量化技術的實驗與優化</span>
+                    </li></ul>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+                <h3 class="text-xl font-semibold mb-4 flex items-center">
+                    <i class="fas fa-exclamation-circle text-orange-500 mr-2"></i>
+                    升級考量
+                </h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-circle text-orange-500 text-xs mt-2 mr-3"></i>
+                        <span>高併發服務需求建議升級至 A100/H100</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-circle text-orange-500 text-xs mt-2 mr-3"></i>
+                        <span>70B+ 大型模型需要更多 VRAM</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-circle text-orange-500 text-xs mt-2 mr-3"></i>
+                        <span>Flash Attention 支援對效能提升顯著</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6">
+            <h3 class="text-xl font-semibold mb-4">延伸思考</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h4 class="font-medium mb-2">💰 效能成本權衡</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">升級至單張 A100 80GB 是否更具成本效益？</p>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-2">🔧 量化技術探索</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">GPTQ、GGUF 等量化方案的最佳平衡點？</p>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-2">🧠 MoE 模型潛力</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">專家混合模型是否能緩解記憶體頻寬瓶頸？</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Author Info -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">LT</span>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Leon.T</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">技術分析師</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="https://twitter.com/leon_t" class="text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="https://github.com/leon-t" class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/leon-t" class="text-gray-600 dark:text-gray-400 hover:text-blue-700 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i></a>
+                </div>
+            </div>
+            
+            <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-600 dark:text-gray-400">
+                <p>&copy; 2025 Leon.T. 版權所有。本報告基於公開資料分析，僅供參考。</p>
+            </div>
+        </div>
+    </footer><script>
+        // Dark mode toggle
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        }
+
+        // Initialize dark mode
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Initialize charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Memory Requirements Chart
+            const memoryChart = echarts.init(document.getElementById('memoryChart'));
+            const memoryOption = {
+                title: {
+                    text: 'LLM 模型規模與記憶體需求',
+                    textStyle: { fontSize: 16 }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    formatter: function(params) {
+                        return `${params[0].name}<br/>記憶體需求: ${params[0].value} GB<br/>DGX Station 總容量: 128 GB`;
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['7B', '13B', '32B', '60B', '70B', '180B']
+                },
+                yAxis: {
+                    type: 'value',
+                    name: 'VRAM (GB)',
+                    axisLabel: { formatter: '{value} GB' }
+                },
+                series: [{
+                    name: '記憶體需求',
+                    type: 'bar',
+                    data: [14, 26, 64, 120, 140, 360],
+                    itemStyle: {
+                        color: function(params) {
+                            if (params.value <= 128) {
+                                return params.value <= 64 ? '#10b981' : '#f59e0b';
+                            }
+                            return '#ef4444';
+                        }
+                    },
+                    markLine: {
+                        data: [{
+                            name: 'DGX Station 容量',
+                            yAxis: 128,
+                            lineStyle: { color: '#3b82f6', width: 2 },
+                            label: { formatter: 'DGX Station 128GB' }
+                        }]
+                    }
+                }]
+            };
+            memoryChart.setOption(memoryOption);
+
+            // Performance Comparison Chart
+            const performanceChart = echarts.init(document.getElementById('performanceChart'));
+            const performanceOption = {
+                title: {
+                    text: 'GPU 世代推理效能對比',
+                    textStyle: { fontSize: 16 }
+                },
+                tooltip: { trigger: 'axis' },
+                legend: { data: ['TFLOPS', 'Flash Attention 支援', '記憶體頻寬 (GB/s)'] },
+                xAxis: {
+                    type: 'category',
+                    data: ['Tesla V100', 'Tesla A100', 'H100 SXM5']
+                },
+                yAxis: [
+                    { type: 'value', name: 'TFLOPS' },
+                    { type: 'value', name: '記憶體頻寬 (GB/s)' }
+                ],
+                series: [
+                    {
+                        name: 'TFLOPS (FP16)',
+                        type: 'bar',
+                        data: [130, 312, 989],
+                        itemStyle: { color: '#3b82f6' }
+                    },
+                    {
+                        name: '記憶體頻寬 (GB/s)',
+                        type: 'line',
+                        yAxisIndex: 1,
+                        data: [900, 1935, 3352],
+                        itemStyle: { color: '#10b981' }
+                    }
+                ]
+            };
+            performanceChart.setOption(performanceOption);
+
+            // Make charts responsive
+            window.addEventListener('resize', function() {
+                memoryChart.resize();
+                performanceChart.resize();
+            });
+
+            // Dark mode chart updates
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === 'class') {
+                        const isDark = document.documentElement.classList.contains('dark');
+                        const darkTheme = {
+                            backgroundColor: 'transparent',
+                            textStyle: { color: isDark ? '#f3f4f6' : '#1f2937' }
+                        };
+                        memoryChart.setOption(darkTheme);
+                        performanceChart.setOption(darkTheme);
+                    }
+                });
+            });
+            observer.observe(document.documentElement, { attributes: true });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const animationObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            animationObserver.observe(section);
+        });
+    </script>
+</body>
+
+<!-- Mirrored from prd-felo-meet.s3.ap-northeast-1.amazonaws.com/search-ext-index-file/html/60fcea79-0c25-4535-a75a-db99766b9ec7/01954692-50eb-4eab-a50d-0a554e28ab72.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250617T104308Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=AKIA5M4ISMZHSPSGEVS5%2F20250617%2Fap-northeast-1%2Fs3%2Faws4_request&X-Amz-Signature=db9846ebdbcb2e69ccf5de3ebb3c0c7a9034170b02ace1163ac6bb0e007cf67a by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Jun 2025 11:18:18 GMT -->
+</html>
